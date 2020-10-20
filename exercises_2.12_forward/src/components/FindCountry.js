@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import CountrySpecifications from './CountrySpecifications'
 
 const FindCountry = ({ countries }) => {
     const [ sT, setST ] = useState('')
@@ -28,9 +29,14 @@ const FindCountry = ({ countries }) => {
         </>
         :
         countryList.map(country => (
-            <li>
-                {country.name}
-            </li>
+            <>
+                <li>
+                    {country.name}
+                </li>
+                <button onClick={CountrySpecifications} value={country.name}>
+                    show
+                </button>
+            </>
         ))
 
     return (
