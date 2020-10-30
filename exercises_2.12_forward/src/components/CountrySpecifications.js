@@ -1,26 +1,39 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 const CountrySpecifications = ({ countryName, countryList }) => {
-    const index
+    const [ countries, setCountries ] = useState([])
+    const [ fCountries, setFCountries] = useState([])
 
-    countryList.map(country => (
-        if (country.name === countryName) {
-            index = country.index
-        }
-    ))
+    useEffect(() => {
+        setCountries(countries.concat(countryList))
+    }, [])
+
+    const filter = () => {
+        countries.map(country => {
+            if (country.name === countryName && fCountries.length <= 1) {
+                setFCountries(fCountries.concat(country))
+            }
+        })
+    }
 
     return (
-        <>
-        <h2>
-            {countryList[index].name}
-        </h2>
-        <p>capital {countryList[index].capital}<br/>population {countryList[index].population}</p>
-        <h3>languages</h3>
-        {countryList[index].languages.map(language => (
-            <li>{language.name}</li>
-        ))}
-        <img src={countryList[index].flag} />
-        </>
+        fCountries.length > 0
+            ?
+            <>
+            <h2>
+                {fCountries[0].name}
+            </h2>
+            <p>capital {fCountries[0].capital}<br/>population {fCountries[0].population}</p>
+            <h3>languages</h3>
+            {fCountries[0].languages.map(language => (
+                <li key={fCountries.name + 1}>{language.name}</li>
+            ))}
+            <img src={fCountries[0].flag} />
+            </>
+            :
+            <>
+                {filter()}
+            </>
     )
 }
 
