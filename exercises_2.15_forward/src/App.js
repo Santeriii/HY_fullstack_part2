@@ -13,7 +13,7 @@ const App = () => {
     .then(initialNumbers => {
       setPersons(initialNumbers)
     })
-  }, [persons])
+  }, [])
 
   const addName = (event) => {
     let includes = false
