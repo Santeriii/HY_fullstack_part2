@@ -41,6 +41,9 @@ const App = () => {
         setPersons(persons.concat(personObject))
         dataTransfer
         .create(personObject)
+        .catch(error => {
+          return <h1>{error.response.data}</h1>
+        })
     }
 
     setNewName('')
